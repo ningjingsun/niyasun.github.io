@@ -6,7 +6,187 @@
         <title></title><!--declaring the title, or name, of the HTML document. displayed in the browser's title bar-->
         <meta name="description" content=""><!--keywords/snippet for search engines-->
         <meta name="viewport" content="width=device-width"><!--the browser will (probably) render the width of the page at the width of its own screen -->
+        <style>
+        	body{
+        		margin: 50px;
+                background-color: rgb(255, 225, 240);
+                background-image: repeating-linear-gradient(rgb(255, 255, 240), pink 10%, white 15%);
+        	}
+            #container{
+                display: flex;
+                justify-content: space-evenly;
+            }
+        	.bar10{
+        		width:150px;
+        		height:30px;
+        		background: red;
+        	}
+        	.bar11{
+        		width:150px;
+        		height:30px;
+        		background: orange;
+        		transform: rotate(-45deg) translate(-10px, 15px);
+        	}
+        	.bar12{
+        		width:150px;
+        		height:30px;
+        		background: red;
+        		transform: translate(0px, 40px);
+        	}
+            #letter2{
+                margin-left: 80px;
+                margin-top: 250px;
+            }
+            .bar20{
+                width:150px;
+                height:50px;
+                background: blue;
+                transform: translate(0px, -100px);
+                border-radius: 40%;
+            }
+            .circle20{
+                width: 70px;
+                height: 70px;
+                background: yellow;
+                transform: translate(120px, -190px);
+                border-radius: 50%;
+            }
+            .bar21{
+                width:180px;
+                height:30px;
+                background: red;
+                transform: rotate(-45deg) translate(60px, -60px);
+                border-radius: 40%;
+            }
+            .circle21{
+                width: 70px;
+                height: 70px;
+                background: yellow;
+                transform: translate(0px, -200px);
+                border-radius: 50%;
+            }
+            .bar22{
+                width:150px;
+                height:50px;
+                background: blue;
+                transform: translate(30px, -140px);
+                border-radius: 40%;
+            }
+            #letter3{
+                margin-top: 280px;
+                margin-left: 80px;
+            }
+            .bar30{
+                width: 200px;
+                height: 50px;
+                background: rgb(75, 180, 100, 75%);
+                border-radius: 75px/25px;
+                transform: rotate(-45deg) translate(-105px, 70px);
+                border: 4px solid yellow;
+            }
+            .bar31{
+                width: 150px;
+                height: 50px;
+                background: rgb(255, 0, 255, 75%);
+                border-radius: 75px/25px;
+                border: 4px solid yellow;
+            }
+            .bar32{
+                width: 150px;
+                height: 50px;
+                background: rgb(255, 0, 255, 75%);
+                border-radius: 75px/25px;
+                transform: translate(0px, 90px);
+                border: 4px solid yellow;
+            }
+            #letter4{
+                margin-top: 160px;
+                margin-left: 70px;
+            }
+            .triangle40{
+                width: 0;
+                height: 0;
+                border-left: 60px solid transparent;
+                border-bottom: 160px solid blue;
+            }
+            .circle42{
+                width: 45px;
+                height: 45px;
+                background: olive;
+                border-radius: 50%;
+                transform: translate(8px, -185px);
+            }
+            .circle40{
+                width: 70px;
+                height: 70px;
+                background: red;
+                border-radius: 50%;
+                transform: translate(60px, -115px);
+            }
+            .circle41{
+                width: 70px;
+                height: 70px;
+                background: red;
+                border-radius: 50%;
+                transform: translate(-62px, -315px);
+            }
+            #letter5{
+                margin-left: 150px;
+                margin-right: 112px;
+            }
+            .triangle50{
+                width: 0;
+                height: 0;
+                border-right: 50px solid transparent;
+                border-bottom: 100px solid olive;
+                transform: rotate(+90deg);
+            }
+            .triangle51{
+                width: 0;
+                height: 0;
+                border-left: 60px solid transparent;
+                border-bottom: 160px solid purple;
+                transform: translate(14px, -75px);
+            }
+            .triangle52{
+                width: 0;
+                height: 0;
+                border-right: 50px solid transparent;
+                border-bottom: 100px solid olive;
+                transform: rotate(-90deg) translate(150px, 100px);
+            }
+        </style>
     </head>
     <body><!--all the contents of an HTML document goes here-->
+        <div id=container>
+            <div id=letter1>
+                <div class=bar10></div>
+    		    <div class=bar11></div>
+    		    <div class=bar12></div>
+            </div>
+            <div id=letter2>
+    		    <div class=bar20></div>
+                <div class=bar21></div>
+                <div class=circle20></div>
+                <div class=bar22></div>
+              <div class=circle21></div>
+            </div>
+            <div id=letter3>
+                <div class=bar30></div>
+                <div class=bar31></div>
+                <div class=bar32></div>
+            </div>
+            <div id=letter4>
+                <div class=triangle40></div>
+                <div class=circle42></div>
+                <div class=circle40></div>
+                <div class=circle41></div>
+            </div>
+            <div id=letter5>
+                <div class=triangle50></div>
+                <div class=triangle51></div>
+                <div class=triangle52></div>
+            </div>
+    	</div>
     </body>
 </html>
