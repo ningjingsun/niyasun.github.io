@@ -11,7 +11,28 @@
         		margin: 50px;
                 background-color: rgb(255, 225, 240);
                 background-image: repeating-linear-gradient(rgb(255, 255, 240), pink 10%, white 15%);
+
+                animation-name: colors;
+                animation-duration: 8s;
+                animation-timing-function: ease-in-out;
+                animation-iteration-count: infinite;
+                animation-direction: normal;
+                animation-fill-mode: both;
         	}
+            @keyframes colors{
+                0% {
+                    background-color: rgb(255, 225, 240);
+                    background-image: repeating-linear-gradient(rgb(255, 255, 240), pink 10%, white 15%);
+                }
+                35% {
+                    background-color: rgb(255, 50, 240);
+                    background-image: repeating-linear-gradient(rgb(255, 255, 240), rgb(240, 180, 240) 10%, white 15%);
+                }
+                70% {
+                    background-color: rgb(255, 100, 240);
+                    background-image: repeating-linear-gradient(rgb(255, 255, 240), rgb(180, 240, 240) 10%, white 15%);
+                }
+            }
             #container{
                 display: flex;
                 justify-content: space-evenly;
@@ -33,6 +54,13 @@
         		background: red;
         		transform: translate(0px, 40px);
         	}
+            #letter1{
+                transition: transform 2s ease-in-out;
+                transform-origin: center;
+            }
+            #letter1:hover {
+                transform: rotate(360deg);
+            }
             #letter2{
                 margin-left: 80px;
                 margin-top: 250px;
@@ -43,6 +71,11 @@
                 background: blue;
                 transform: translate(0px, -100px);
                 border-radius: 40%;
+                transition: transform 2s ease-in-out;
+                transform-origin: center;
+            }
+            .bar20:hover {
+                transform: rotate(360deg);
             }
             .circle20{
                 width: 70px;
@@ -50,6 +83,10 @@
                 background: yellow;
                 transform: translate(120px, -190px);
                 border-radius: 50%;
+                transition: transform 2s ease-in-out;
+            }
+            .circle20:hover{
+                transform: scale(2,2);
             }
             .bar21{
                 width:180px;
@@ -57,6 +94,11 @@
                 background: red;
                 transform: rotate(-45deg) translate(60px, -60px);
                 border-radius: 40%;
+                transition: transform 2s ease-in-out;
+                transform-origin: center;
+            }
+            .bar21:hover {
+                transform: rotate(360deg);
             }
             .circle21{
                 width: 70px;
@@ -64,6 +106,10 @@
                 background: yellow;
                 transform: translate(0px, -200px);
                 border-radius: 50%;
+                transition: transform 2s ease-in-out;
+            }
+            .circle21:hover{
+                transform: scale(2,2);
             }
             .bar22{
                 width:150px;
@@ -71,6 +117,11 @@
                 background: blue;
                 transform: translate(30px, -140px);
                 border-radius: 40%;
+                transition: transform 2s ease-in-out;
+                transform-origin: center;
+            }
+            .bar22:hover {
+                transform: rotate(360deg);
             }
             #letter3{
                 margin-top: 280px;
@@ -83,6 +134,12 @@
                 border-radius: 75px/25px;
                 transform: rotate(-45deg) translate(-105px, 70px);
                 border: 4px solid yellow;
+
+                transition: transform 2s ease-in-out;
+                transform-origin: center;
+            }
+            .bar30:hover {
+                transform: rotate(360deg);
             }
             .bar31{
                 width: 150px;
@@ -90,6 +147,12 @@
                 background: rgb(255, 0, 255, 75%);
                 border-radius: 75px/25px;
                 border: 4px solid yellow;
+
+                transition: transform 2s ease-in-out;
+                transform-origin: center;
+            }
+            .bar31:hover {
+                transform: rotate(360deg);
             }
             .bar32{
                 width: 150px;
@@ -98,6 +161,12 @@
                 border-radius: 75px/25px;
                 transform: translate(0px, 90px);
                 border: 4px solid yellow;
+
+                transition: transform 2s ease-in-out;
+                transform-origin: center;
+            }
+            .bar32:hover {
+                transform: rotate(360deg);
             }
             #letter4{
                 margin-top: 160px;
@@ -108,6 +177,12 @@
                 height: 0;
                 border-left: 60px solid transparent;
                 border-bottom: 160px solid blue;
+
+                transition: transform 2s ease-in-out;
+                transform-origin: center;
+            }
+            .triangle40:hover {
+                transform: rotate(360deg);
             }
             .circle42{
                 width: 45px;
@@ -115,6 +190,10 @@
                 background: olive;
                 border-radius: 50%;
                 transform: translate(8px, -185px);
+                transition: transform 2s ease-in-out;
+            }
+            .circle42:hover{
+                transform: scale(2,2);
             }
             .circle40{
                 width: 70px;
@@ -122,6 +201,10 @@
                 background: red;
                 border-radius: 50%;
                 transform: translate(60px, -115px);
+                transition: transform 2s ease-in-out;
+            }
+            .circle40:hover{
+                transform: scale(2,2);
             }
             .circle41{
                 width: 70px;
@@ -129,6 +212,10 @@
                 background: red;
                 border-radius: 50%;
                 transform: translate(-62px, -315px);
+                transition: transform 2s ease-in-out;
+            }
+            .circle41:hover{
+                transform: scale(2,2);
             }
             #letter5{
                 margin-left: 150px;
