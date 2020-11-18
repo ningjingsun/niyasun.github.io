@@ -1,0 +1,649 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"><!--charset: character encoding capable of encoding all characters on the web  -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><!--for browser compatibility: choose rendering engine to view the page in an correct view (for old ver. IE)  -->
+    <title>Post-Vision 2020</title><!--declaring the title, or name, of the HTML document. displayed in the browser's title bar-->
+    <meta name="description" content=""><!--keywords/snippet for search engines-->
+    <meta name="viewport" content="width=device-width"><!--the browser will (probably) render the width of the page at the width of its own screen -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.min.js"></script>
+	<style>
+		::-webkit-scrollbar {
+            width: 13px;  /* Remove scrollbar space */
+            height: 13px;
+            background: rgb(160, 160, 160);
+   	    }
+        ::-webkit-scrollbar-thumb {
+            background: rgb(225, 225, 225);
+        }
+        .essay::-webkit-scrollbar {
+            width: 0px;  /* Remove scrollbar space */
+            height: 0px;
+            background: transparent;
+        }
+        .essay::-webkit-scrollbar-thumb {
+            background: transparent;
+        }
+        .essayblock::-webkit-scrollbar {
+            width: 0px;  /* Remove scrollbar space */
+            height: 0px;
+            background: transparent;
+        }
+        .essayblock::-webkit-scrollbar-thumb {
+            background: transparent;
+        }
+        .collectblock::-webkit-scrollbar {
+            width: 0px;  /* Remove scrollbar space */
+            height: 0px;
+            background: transparent;
+        }
+        .collectblock::-webkit-scrollbar-thumb {
+            background: transparent;
+        }
+		#header{
+            background-image: linear-gradient(to bottom, 
+            rgba(255, 255, 35),
+            rgba(190,190,190) 13%, 
+            rgba(180, 180, 180) 36%,
+            transparent 100%);
+            }
+        .headertext{
+            color: rgb(30, 30, 30);
+            margin-top: 0.6rem;
+        }
+        #quote{
+                margin-left: 9%;
+            }
+        body{
+            /*background-image: url("img/background1.png");*/
+            background-image: url("img/grassland.jpg");
+            background-position: center;
+            /*background-size: cover;
+            background-attachment: fixed;*/
+            background-size: cover;
+            background-attachment: scroll;
+            width: 200vw;
+            background-color: rgb(255, 255, 255);
+            margin-bottom: 0px;
+        }
+        a{
+            color: rgb(30, 30, 30);
+            text-decoration: none;
+        }
+        a:hover{
+            font-style: italic;
+        }
+        p{
+            font-family: arialnarrow;
+            font-style: normal;
+            font-size: 1rem;
+            line-height: 1.3rem;
+            letter-spacing: 0px;
+            color: rgb(30, 30, 30);
+        }
+        .bibliography{
+            font-family: mono;
+            font-style: normal;
+            font-size: 0.9rem;
+            letter-spacing: -0.04rem;
+        }
+        #title{
+            font-family: arialnarrow;
+            margin-top: 1.2rem;
+            margin-bottom: 1.3rem;
+            padding-top: 0rem;
+            font-size:3rem;
+            line-height: 3.2rem;
+            letter-spacing: -0.02rem;
+        }
+        .subtitle{
+            font-family: arialnarrow;
+            padding-top: 0.1rem;
+            padding-bottom: 0.1rem;
+            font-size: 2rem;
+            line-height: 2.1rem;
+            letter-spacing: 0px;
+        }
+        #keywords{
+            font-family: arialnarrow;
+            margin-top: 1.2rem;
+            margin-bottom: 1.4rem;
+            font-size: 1.4rem;
+            line-height: 1.7rem;
+            letter-spacing: 0px;
+        }
+        .essayblock{
+        	position: fixed;
+            display: flex;
+            font-family: arialnarrow;
+            overflow-x: hidden;
+            overflow-y: hidden;
+            text-align: left;
+            margin-top: 8vh;
+            margin-left: 6%;
+            margin-right: 13%;
+            padding: 0rem;
+            border: 0.8px dotted black;
+            background-color: white;
+            color: black;
+            height: 86vh;
+            width: 35.6vw;
+            z-index: 40;
+            transition: 0.7s;
+        }
+        .essayblockClose{
+            height: 6vh;
+            width: 8vw;
+            z-index: 40;
+            transition: 0.5s;
+        }
+        .essay{
+            max-width: 93%;
+            width: 93%;
+            overflow-y: scroll;
+            margin-left: 7%;
+            padding-top: 3%;
+            transition: 0.3s;
+        }
+        .essayClose{
+            max-width: 0%;
+            width: 0%;
+            overflow-y: scroll;
+            margin-left: 7%;
+            padding-top: 3%;
+            transition: 0.3s;
+        }
+        .cancel3{
+   			width: 50px;
+    		height: 30px;
+    		border-bottom: 2.6px solid black;
+    		transform: translateX(-6%) translateY(10%) rotate(45deg);
+    		margin: 0px;
+            padding: 0px;
+            transition: 0.7s;
+		}
+		.cancel4{
+    		width: 50px;
+    		height: 30px;
+    		border-bottom: 2.6px solid black;
+    		transform: translateX(-42%) translateY(-92%) rotate(-45deg);
+    		margin: 0px;
+            transition: 0.7s;
+		}
+        .expand1{
+            width: 40px;
+            height: 30px;
+            border-bottom: 2.6px solid black;
+            transform: translateX(5%) translateY(12%) rotate(50deg);
+            margin: 0px;
+            padding: 0px;
+            transition: 0.7s;
+        }
+        .expand2{
+            width: 40px;
+            height: 30px;
+            border-bottom: 2.6px solid black;
+            transform: translateX(16%) translateY(-90%) rotate(-50deg);
+            margin: 0px;
+            transition: 0.7s;
+        }
+        .cancel5{
+            width: 50px;
+            height: 30px;
+            border-bottom: 2.6px solid black;
+            transform: translateX(-6%) translateY(10%) rotate(45deg);
+            margin: 0px;
+            padding: 0px;
+        }
+        .cancel6{
+            width: 50px;
+            height: 30px;
+            border-bottom: 2.6px solid black;
+            transform: translateX(-42%) translateY(-92%) rotate(-45deg);
+            margin: 0px;
+        }
+		.cancelA{
+			right: 0;
+            top: 0;
+            max-width: 6%;
+            width: 6%;
+            margin-right: 2%;
+            padding-top: 1%;
+            transition: 0.2s;
+		}
+        .cancelAClose{
+            max-width: 0%;
+            width: 0%;
+            opacity: 0;
+        }
+        .expandClose{
+            max-width: 0%;
+            margin-top: 1%;
+            width: 0%;
+            opacity: 0;
+            transition: 0.4s;
+        }
+        .expand{
+            max-width: 6%;
+            width: 6%;
+            margin-top: 1%;
+            opacity: 1;
+        }
+        .cancelB{
+            position: absolute;
+            right: 0;
+            top: 0;
+            margin-right: 2%;
+            padding-top: 1%;
+        }
+        .asset{
+            margin-left: 80rem;
+            margin-height: 40rem;
+            z-index: 30;
+        }
+        .collectblock{
+            position: fixed;
+            font-family: arialnarrow;
+            display: flex;
+            /*display: flex;
+            justify-content: center;
+            align-items: center;*/
+            text-align: left;
+            margin-top: 68vh;
+            margin-top: 70vh;
+            margin-bottom: 12vh;
+            margin-left: 62vw;
+            min-width: 12vh;
+            padding: 0rem;
+            border: 0.8px dotted black;
+            background-color: white;
+            color: black;
+            height: 24vh;
+            width: 36vw;
+            overflow-y: scroll;
+            z-index: 40;
+        }
+        #click{
+            position: absolute;
+            margin-left: 2%;
+        }
+        #downloadblock{
+            position: absolute;
+            display: block;
+            box-sizing: border-box;
+            width: 100%;
+            padding-right: 2%;
+            padding-top: 17vh;
+            margin: 0;
+        }
+        .download{
+            display: inline;
+            float: right;
+            padding-left: 0.3rem;
+            padding-right: 0.3rem;
+            background: white;
+            border: 0.8px dotted black;
+            margin: 0;
+        }
+        .asset2{
+            margin-left: 20rem;
+            margin-height: 120rem;
+            padding-height: 50rem;
+        }
+        .asset{
+            max-width: 200px;
+            width: 200px;
+            max-height: auto;
+            height: auto;
+            z-index: 30;
+        }
+    </style>
+</head>
+<body>
+    <!--
+	<div id=header>
+        <p class="headertext"><a href="calendar.html" class=headercss>With the Future Behind Us</a></p>
+        <p class="headertext"><a href="room.html" class=headercss>Self-Meditation Room/A–Z</a></p>
+        <p class="headertext"><a href="worldbuilding.html" class=headercss>Worldbuilding Daily Tactics</a></p>
+        <p class="headertext about">????</p>
+    </div>
+    -->
+
+    <div class=essayblock>
+    	<div class=essay>
+            <p id=title>Worldbuilding as a Daily Practice</p>
+            <p id=keywords>Keywords: Worldbuilding, Tactics, Co-opting, Creative Resistance, Personal Systems, Daily Practice, Late Capitalism, Neue-Futurism</p>
+            <p class=subtitle>Art, Poetry and World&shy;building</p>
+    		<p>During my time at RISD, I was fortunate to be immersed in an environment where artists from all of the different creative fields gathered around. It thus became a hobby of mine to observe how the different creators created—what 	their personal practices were, and where their inner systems of logic came from.</p>
+			<p>It quickly occured to me that all different forms of creations—poems, paintings, sculptures, films, and many other more — are in essence the same, which are fundamentally structured around the concept and act of “worldbuilding”. Ian Chang defined a “world” as “a reality that (one) can believe in: one that promises to bring about habitable structure from the potential of chaos, and aims toward a future transformative enough to metabolize the pain and pleasure of its dysfunction<sup>[1]</sup>”. As he further elaborated in the project named Worlding Raga<sup>[1]</sup>,</p>
+			<div id=quote>
+				<p>“We could say a World is something like a gated garden. A World has borders. A World has laws. A World has values. A World has dysfunction. A World can grow up. A World has members who live in it. A World gives its members permission to act differently than outside of it. A World incentivizes its members to keep it alive, often with the pleasures of its dysfunction. A World counts certain actions inside it as relevant and meaningful. A World undergoes reformations and disruptions. A World has mythic figures. A World is a container for all the possible stories of itself. A World manifests evidence of itself in its members, emissaries, symbols, tangible artifacts, and media, yet it is always something more.”</p>
+			</div>
+			<p>All creations originate from such urge and desire of worldbuilding, and all great creations succeed in building a world and channeling its potential in front of the audience. Think about the complexity of the epistemological frameworks of Game of Thrones and Harry Potter, or the interwoven pictorial symbols in the paintings of Picasso and David Hockney. On one hand, in order for their work to be accessible in the first place, the artists familiarize themselves with the public, circulatory systems of social and cultural signifiers; on the other hand, all creators hold a secret treasury of their own hermeneutic, idiosyncratic systems of symbols, visuals and artistic devices, each closely intercorrelated with the others by following certain self-designed rules. By combining these external and internal systems, the artists are able to create their worlds which are open, generative and self-perpetuating.</p>
+			<p>As an art student who learns to create, I’m especially interested in how young artists develop their personal artistic practice, and it turns out that the project of “worldbuilding”—which is at the core of the practice of every mature artist— is an extremely slow and laborious process of piling up, or piecing together a picture bit by bit. If we go back to the moment before a world is born, we would see a creator look at the meaningless, chaotic void—the thing we called Reality—and wonder what to do about it. The curious creator then finds out something interesting, something directly or indirectly related to the creator’s inborn sensitivities or ongoing history, therefore latent with meanings and potential—the creator thus decides to take that slice from the Reality and keep it their own. Sometimes the creator finds nothing meaningful and thus has to wait. Sometimes the creator has to trace back their memory again and again to excavate things that might shed light on the present. As time goes by, the conscious and diligent creator accumulates a larger and larger personal collection, where symbols, vocabularies and imageries start to refer to and intercorrelate with each other according to certain self-designed rules and rationales. That’s the very beginning of a World, a secret entry point into the vastness of the creator’s inner psyche. What I am interested in, beyond this revelation that artistic creation is about worldbuilding, is in the fact that with such methodologies of co-opting the Reality and making part of the Reality our own—something that professional artists receive their years of training on but each of us could also exercise on a daily basis—we as individuals would be able to restore a sense of trust in the Reality.</p>
+			<p class=subtitle>“Tactics”, not “Strategies”</p>
+			<p>Worldbuilding is about how we navigate the world that we live in and build Trust in that Reality. The notion of a world is born as our complex and enduring response to the chaos of the bald Reality, and it always originates from the living inside one, which is deep within its ongoing history. As we enter the stage of late Capitalism, it becomes too often for an individual to lose their personal agency over the Reality. As we find ourselves stuck between the unraveling old realities and the emerging bleak ones—especially at this dramatic moment of 2020—worldbuilding has the potential to become a powerful ritual that everyone could exercise on a daily basis in order to help us “navigate darkness, maintain agency despite indeterminacy, and appreciate the multitude of Worlds we can choose to live in and create<sup>[1]</sup>”.</p>
+			<p>In his book “The Practice of Everyday Life<sup>[2]</sup>”, Michel de Certeau made a critical distinction between the concepts of “strategy” and “tactics”. As he clarified, “strategies” are created by government and other institutional bodies who are labeled as the “producers”, whereas individuals are the “consumers” acting in the environments bounded and defined by strategies by using self-designed “tactics”. “Tactics” are by their nature defensive, expedient, and opportunistic, being seized momentarily within different spaces and sets of relations. This definition concretely illustrates how our daily routine practices—our “arts of doing things” such as reading, cooking, talking, walking, sleeping—often work in a process of poaching on the territories of the power bodies, heeding their rules and utilizing their products, but never wholly determined by any of them. In the chapter “Walking in the City”, for instance, de Certeau pointed out that whereas the “city” and “city map” is generated by the strategies developed by organizational power structures, the pedestrian at street level moves in ways that are tactical but never fully determined by the plans of organizing bodies.</p>
+			<p>De Certeau’s theory accurately exposes the oppressiveness of the symbolic systems run by the dominant cultures, and yet it also points to a possible way out—don’t just inherit the systems; play with the systems. Co-opt the systems, individualise them and make them your own. In my opinions, these tactics are perfect examples of how the concept of worldbuilding could be realized and practiced on a daily basis. The thing is, we don’t have to be professional artists in order to exercise the practice of worldbuilding. As our current world gradually slips into a scene of extreme bleakness and barrenness, it’s more and more important to recognize art/worldbuilding not as a perquisite of the oftentimes elite artists, but as an urgent practice/daily ritual that each individual should carry out in our everyday lives.</p>
+			<p>Under the methodologies of worldbuilding, there is a call for us to not just inherit the current world and live by its existing traditions and rules, but to awaken our urge and inborn sensibilities to create, and therefore regain the agency to build up a small world around us—by co-opting the mainstream cultures, stripping them for parts, taking out the symbols that are personally meaningful to us and making them our own with our idiosyncratic way. By doing so, the conceptual framework of worldbuilding had the potential to offer us a point of creative resistance and epistemic disobedience. Perhaps as we all encounter the bleak Reality of 2020, the mere belief in the existence of such a world—a world that is worth building, worth living in, and worth believing in—would become a huge comfort and encouragement for each of us.</p>
+			<p class=subtitle>Bibliography</p>
+			<p class=bibliography><a href="https://www.ribbonfarm.com/2019/03/05/worlding-raga-2-what-is-a-world/" class=bibliography>[1] Ian Chang, Worlding Raga: 2—What is a World?</a><br>
+			<a href="https://en.wikipedia.org/wiki/The_Practice_of_Everyday_Life" class=bibliography>[2] Michel de Certeau, The Practice of Everyday Life.</a><br>
+			<a href="http://journal.finfar.org/articles/notes-toward-a-critical-approach-to-worlds-and-world-building/" class=bibliography>[3] Stefan Ekman and Audrey Isabel Taylor, Notes Towards a Critical Approach to Worlds and World-Building.</a><br>
+			<a href="https://www.tinymixtapes.com/features/2018-against-worldbuilding" class=bibliography>[4] Nick James Scavo, 2018: Against Worldbuilding.</a><br>
+			</p>
+            <p style="text-align: center">❤ ❤ ❤</p>
+            <br>
+        </div>
+        <div class="cancelA aboutA">
+            <p class=cancel3></p>
+            <p class=cancel4></p>
+        </div>
+        <div class="expandClose aboutA">
+            <p class=expand1></p>
+            <p class=expand2></p>
+        </div>
+    </div>
+
+    <div class=collectblock>
+        <p class=subtitle id=click>Click and collect your assets!</p>
+        <div id=downloadblock>
+            <p class="subtitle download">Download</p>
+        </div>
+        <div class=collectasset>
+        </div>
+        <!--<div class=cancelB>
+            <p class=cancel5></p>
+            <p class=cancel6></p>
+        </div>-->
+    </div>
+
+    <div class=asset>
+        <img class=asset src="img/assetA.png">
+        <img class=asset src="img/assetB.png">
+        <img class=asset src="img/bear.png">
+    </div>
+
+    <div class="collophon">
+        <p class="collophontext description">This project is composed of three layers of narrative: <a href="calendar.html" class="collophontext collophonlink">① an archive of people’s previous projection into the future of 2020;</a> <a href="worldbuilding.html" class="collophontext collophonlink">② an essay on worldbuilding as a daily practice;</a><a href="room.html" class="collophontext collophonlink"> ③ a meditation room of people’s daily stories in the face of a global crisis.</a><br><br>© 2020 Ningjing Sun; Last updated in November 2020<br>Special thanks to Marie Otsuka and Minkyoung Kim</p>
+        <p class="collophontext description">2020 is a big year and the beginning of a new decade. The first part of this project acts as an archive of people’s previous predictions about 2020 in the form of a calendar. It aims to excavate and collect these predictions, projections, lost hopes and wishes that people made about 2020 before its actual arrival—some positive, some negative, but most of them unfulfilled due to the global pandemic—and weave them together into a parallel, fictitious narrative of the year.</p>
+        <div class=collophontext>
+            <p class="collophontext about cancel1"></p>
+            <p class="collophontext about cancel2"></p>
+        </div>
+    </div>
+
+    <script>
+    	$(".about").click(function(){
+        	$(".collophon").toggleClass("collophon_open");
+    	})
+
+        $(".aboutA").click(function(){
+            $(".essayblock").toggleClass("essayblockClose");
+            $(".essay").toggleClass("essayClose");
+            $(".cancelA").toggleClass("cancelAClose");
+            $(".expandClose").toggleClass("expand");
+        })
+    </script>
+
+    <script>    //adding asset to an array
+
+    </script>
+
+    <script>    //post thumbnail into collection box
+    </script>
+
+    <script>    //package all selected assets into zip, downloading
+    </script>
+
+    
+	<script type="text/javascript">
+		var edgeSizea = 240;
+		var edgeSizeb = 480;
+		var timer = null;
+
+		window.addEventListener( "mousemove", handleMousemove, false );
+
+		drawGridLines();
+
+		// I adjust the window scrolling in response to the given mousemove event.
+		function handleMousemove( event ) {
+
+			// NOTE: Much of the information here, with regard to document dimensions,
+			// viewport dimensions, and window scrolling is derived from JavaScript.info.
+			// I am consuming it here primarily as NOTE TO SELF.
+			// --
+			// Read More: https://javascript.info/size-and-scroll-window
+			// --
+			// CAUTION: The viewport and document dimensions can all be CACHED and then
+			// recalculated on window-resize events (for the most part). I am keeping it
+			// all here in the mousemove event handler to remove as many of the moving
+			// parts as possible and keep the demo as simple as possible.
+
+			// Get the viewport-relative coordinates of the mousemove event.
+			var viewportX = event.clientX;
+			var viewportY = event.clientY;
+
+			// Get the viewport dimensions.
+			var viewportWidth = document.documentElement.clientWidth;
+			var viewportHeight = document.documentElement.clientHeight;
+
+			// Next, we need to determine if the mouse is within the "edge" of the 
+			// viewport, which may require scrolling the window. To do this, we need to
+			// calculate the boundaries of the edge in the viewport (these coordinates
+			// are relative to the viewport grid system).
+			var edgeTop = edgeSizea;
+			var edgeLeft = edgeSizeb;
+			var edgeBottom = ( viewportHeight - edgeSizea );
+			var edgeRight = ( viewportWidth - edgeSizeb );
+
+			var isInLeftEdge = ( viewportX < edgeLeft );
+			var isInRightEdge = ( viewportX > edgeRight );
+			var isInTopEdge = ( viewportY < edgeTop );
+			var isInBottomEdge = ( viewportY > edgeBottom );
+
+			// If the mouse is not in the viewport edge, there's no need to calculate
+			// anything else.
+			if ( ! ( isInLeftEdge || isInRightEdge || isInTopEdge || isInBottomEdge ) ) {
+
+				clearTimeout( timer );
+				return;
+			}
+
+			// If we made it this far, the user's mouse is located within the edge of the
+			// viewport. As such, we need to check to see if scrolling needs to be done.
+
+			// Get the document dimensions.
+			// --
+			// NOTE: The various property reads here are for cross-browser compatibility
+			// as outlined in the JavaScript.info site (link provided above).
+			var documentWidth = Math.max(
+				document.body.scrollWidth,
+				document.body.offsetWidth,
+				document.body.clientWidth,
+				document.documentElement.scrollWidth,
+				document.documentElement.offsetWidth,
+				document.documentElement.clientWidth
+			);
+			var documentHeight = Math.max(
+				document.body.scrollHeight,
+				document.body.offsetHeight,
+				document.body.clientHeight,
+				document.documentElement.scrollHeight,
+				document.documentElement.offsetHeight,
+				document.documentElement.clientHeight
+			);
+
+			// Calculate the maximum scroll offset in each direction. Since you can only
+			// scroll the overflow portion of the document, the maximum represents the
+			// length of the document that is NOT in the viewport.
+			var maxScrollX = ( documentWidth - viewportWidth );
+			var maxScrollY = ( documentHeight - viewportHeight );
+
+			// As we examine the mousemove event, we want to adjust the window scroll in
+			// immediate response to the event; but, we also want to continue adjusting
+			// the window scroll if the user rests their mouse in the edge boundary. To
+			// do this, we'll invoke the adjustment logic immediately. Then, we'll setup
+			// a timer that continues to invoke the adjustment logic while the window can
+			// still be scrolled in a particular direction.
+			// --
+			// NOTE: There are probably better ways to handle the ongoing animation
+			// check. But, the point of this demo is really about the math logic, not so
+			// much about the interval logic.
+			(function checkForWindowScroll() {
+
+				clearTimeout( timer );
+
+				if ( adjustWindowScroll() ) {
+
+					timer = setTimeout( checkForWindowScroll, 30 );
+
+				}
+
+			})();
+
+			// Adjust the window scroll based on the user's mouse position. Returns True
+			// or False depending on whether or not the window scroll was changed.
+			function adjustWindowScroll() {
+
+				// Get the current scroll position of the document.
+				var currentScrollX = window.pageXOffset;
+				var currentScrollY = window.pageYOffset;
+
+				// Determine if the window can be scrolled in any particular direction.
+				var canScrollUp = ( currentScrollY > 0 );
+				var canScrollDown = ( currentScrollY < maxScrollY );
+				var canScrollLeft = ( currentScrollX > 0 );
+				var canScrollRight = ( currentScrollX < maxScrollX );
+
+				// Since we can potentially scroll in two directions at the same time,
+				// let's keep track of the next scroll, starting with the current scroll.
+				// Each of these values can then be adjusted independently in the logic
+				// below.
+				var nextScrollX = currentScrollX;
+				var nextScrollY = currentScrollY;
+
+				// As we examine the mouse position within the edge, we want to make the
+				// incremental scroll changes more "intense" the closer that the user
+				// gets the viewport edge. As such, we'll calculate the percentage that
+				// the user has made it "through the edge" when calculating the delta.
+				// Then, that use that percentage to back-off from the "max" step value.
+				var maxStep = 14;
+
+				// Should we scroll left?
+				if ( isInLeftEdge && canScrollLeft ) {
+
+					var intensity = ( ( edgeLeft - viewportX ) / edgeSizeb );
+
+					nextScrollX = ( nextScrollX - ( maxStep * intensity ) );
+
+				// Should we scroll right?
+				} else if ( isInRightEdge && canScrollRight ) {
+
+					var intensity = ( ( viewportX - edgeRight ) / edgeSizeb );
+
+					nextScrollX = ( nextScrollX + ( maxStep * intensity ) );
+
+				}
+
+				// Should we scroll up?
+				if ( isInTopEdge && canScrollUp ) {
+
+					var intensity = ( ( edgeTop - viewportY ) / edgeSizea );
+
+					nextScrollY = ( nextScrollY - ( maxStep * intensity ) );
+
+				// Should we scroll down?
+				} else if ( isInBottomEdge && canScrollDown ) {
+
+					var intensity = ( ( viewportY - edgeBottom ) / edgeSizea );
+
+					nextScrollY = ( nextScrollY + ( maxStep * intensity ) );
+
+				}
+
+				// Sanitize invalid maximums. An invalid scroll offset won't break the
+				// subsequent .scrollTo() call; however, it will make it harder to
+				// determine if the .scrollTo() method should have been called in the
+				// first place.
+				nextScrollX = Math.max( 0, Math.min( maxScrollX, nextScrollX ) );
+				nextScrollY = Math.max( 0, Math.min( maxScrollY, nextScrollY ) );
+
+				if (
+					( nextScrollX !== currentScrollX ) ||
+					( nextScrollY !== currentScrollY )
+					) {
+
+					window.scrollTo( nextScrollX, nextScrollY );
+					return( true );
+
+				} else {
+
+					return( false );
+
+				}
+
+			}
+
+		}
+		// I draw the grid and edge lines in the document so that it is clear where
+		// scrolling will be initiated and with what intensity it is taking place.
+		function drawGridLines() {
+
+			var increment = 200;
+			var incrementCount = 40;
+			var maxDimension = ( increment * incrementCount );
+
+			// Draw the boxes that make up the grid.
+			for ( var x = 0 ; x < incrementCount ; x++ ) {
+				for ( var y = 0 ; y < incrementCount/2 ; y++ ) {
+
+					var xOffset = ( x * increment );
+					var yOffset = ( y * increment );
+
+					var box = document.createElement( "span" );
+					box.style.position = "absolute";
+					box.style.top = ( yOffset + "px" );
+					box.style.left = ( xOffset + "px" );
+					box.style.height = ( increment + "px" );
+					box.style.width = ( increment + "px" );
+					box.style.border = "1px solid rgb(244, 244, 244)";
+					box.style.font = "11px sans-serif";
+					box.style.color = "rgb(234, 234, 234)" ;
+					box.style.boxSizing = "border-box";
+					box.style.padding = "5px 5px 5px 5px";
+					/*box.innerText = ( xOffset + ", " + yOffset );*/
+					document.body.appendChild( box );
+
+				}
+			}
+			
+            /*
+			// Draw the edges that delineate the scrolling zone.
+			var edge = document.createElement( "span" );
+			edge.style.position = "fixed";
+			edge.style.top = ( edgeSizea + "px" );
+			edge.style.bottom = ( edgeSizea + "px" );
+			edge.style.left = ( edgeSizeb + "px" );
+			edge.style.right = ( edgeSizeb + "px" );
+			edge.style.border = "2px solid #CC0000";
+			edge.style.borderRadius = "5px 5px 5px 5px";
+			document.body.appendChild( edge );*/
+
+			// Add mouse-guard so that nothing is selectable.
+			var guard = document.createElement( "div" );
+			guard.style.position = "fixed";
+			guard.style.top = "0px";
+			guard.style.bottom = "0px";
+			guard.style.left = "0px";
+			guard.style.right = "0px";
+			document.body.appendChild( guard );
+		}	//grid
+	</script>
+
+</body>
+</html>
