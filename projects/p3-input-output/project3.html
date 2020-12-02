@@ -14,6 +14,16 @@
     <script src="js/FileSaver.min.js"></script>
     <script src="js/garden_script.js"></script>
     <style>
+        @font-face {
+            font-family: arialnarrow;
+            font-style: normal;
+            src: url(fonts/arialnarrow.ttf);
+        }
+        @font-face {
+            font-family: mono;
+            font-style: normal;
+            src: url(fonts/3X3-MonoRegular.woff);
+        }
         ::-webkit-scrollbar {
             width: 12px;  /* Remove scrollbar space */
             height: 12px;
@@ -61,7 +71,7 @@
             rgba(0, 255, 0),
             rgba(120,255,120) 9%, 
             rgba(240, 255, 240) 25%,
-            transparent 100%);
+            rgba(255, 255, 255, 0));
             }
         .headertext{
             color: rgb(30, 30, 30);
@@ -340,6 +350,11 @@
         .startag{
             display: inline;
             /*display: inline-block;*/
+            font-family: mono;
+            font-style: normal;
+            font-size: 0.7rem;
+            line-height: 1rem;
+            letter-spacing: -0.01rem;
             position: relative;
             top: 0rem;
             background-color: white;
