@@ -58,6 +58,7 @@ $(function(){
         $(".refresh").click(function(){         //empty assetblock
             $(".assetblock").empty();
             $(".button").removeClass('active');
+            $(".assetimage").removeClass('used');
             downloadUrls = [];
         });
 
